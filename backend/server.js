@@ -3,52 +3,44 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const app = express();
-
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
+// MongoDB Connection (PRODUCT DB)
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mernDemo")
+  .connect("mongodb://127.0.0.1:27017/mernProducts")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
-// Schema & Model
-const StudentSchema = new mongoose.Schema({
+// Product Schema
+const ProductSchema = new mongoose.Schema({
   name: String,
-  course: String,
+  price: Number,
 });
 
-const Student = mongoose.model("Student", StudentSchema);
+const Product = mongoose.model("Product", ProductSchema);
 
-// ================= ROUTES =================
-
-// GET – Read all students (READ)
-app.get("/students", async (req, res) => {
+// GET products (READ)
+app.get("/products", async (req, res) => {
   try {
-    const students = await Student.find();
-    res.json(students);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching students" });
+    const products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching products" });
   }
 });
 
-// POST – Add new student (CREATE)
-app.post("/students", async (req, res) => {
+// POST product (CREATE)
+app.post("/products", async (req, res) => {
   try {
-    const newStudent = new Student(req.body);
-    const savedStudent = await newStudent.save();
-    res.json(savedStudent);
-  } catch (error) {
-    res.status(500).json({ message: "Error adding student" });
+    const product = new Product(req.body);
+    const savedProduct = await product.save();
+    res.json(savedProduct);
+  } catch (err) {
+    res.status(500).json({ message: "Error adding product" });
   }
 });
 
-// ===========================================
-
-// Server start
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });

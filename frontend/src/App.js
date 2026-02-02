@@ -1,11 +1,11 @@
 import "./App.css";
-import StudentList from "./Components/StudentList";
+import ProductList from "./Components/ProductList";
 
 function App() {
   return (
     <div className="app-container">
-      <h1>MERN First App</h1>
-      <StudentList />
+      <h1>MERN Product App</h1>
+      <ProductList />
     </div>
   );
 }
