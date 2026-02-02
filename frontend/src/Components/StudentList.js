@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import StudentCard from "./StudentCard";
 
 function StudentList() {
   const [students, setStudents] = useState([]);
@@ -13,14 +14,13 @@ function StudentList() {
   return (
     <div>
       <h2>Student List</h2>
-      <ul>
-        {students.map((s, i) => (
-          <li key={i}>
-            <span className="student-name">{s.name}</span>
-            <span className="student-course">{s.course}</span>
-          </li>
-        ))}
-      </ul>
+      {students.map((s, i) => (
+        <StudentCard
+          key={i}
+          name={s.name}
+          course={s.course}
+        />
+      ))}
     </div>
   );
 }
