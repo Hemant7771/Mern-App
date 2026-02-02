@@ -7,6 +7,8 @@ The project demonstrates the integration of a React frontend with a Node.js + Ex
 
 The application fetches student data from a backend API and displays it on the frontend using React.  
 It helps in understanding the complete flow of a MERN stack application.
+- Used reusable Card component and props to display data
+- Implemented basic CRUD API (GET, POST)
 
 ## 🛠 Tech Stack
 
